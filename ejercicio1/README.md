@@ -35,6 +35,7 @@ Para completar la implementación, se solicita realizar las siguientes tareas:
         - `updated_at`: Fecha de actualización del sensor.
     - Implementar la propiedad computada `updateValue` mediante un *setter* que permita actualizar el valor del sensor y la fecha de actualización.
     - Los únicos valores para `type` permitidos son `temperature`, `humidity` y `pressure`.
+    
 2. Para la clase `SensorManager`, la cual se encarga de gestionar los sensores mediante un arreglo, se solicita implementar el método `loadSensors` que se encargue de cargar los sensores desde el archivo `sensors.json`.
     - El método debe ser **asíncrono**, puede utilizar `fetch` o `XMLHttpRequest`. Pueden emplear `async/await` o promesas.
     - El método debe recibir la ruta del archivo `sensors.json` como argumento.

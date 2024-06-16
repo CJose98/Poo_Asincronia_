@@ -1,0 +1,277 @@
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON> cd 1.Proy_Discor
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON\1.Proy_Discor> git init #inicializa nuestro repositorio
+Initialized empty Git repository in D:/2- PROGRAMACION/TRABAJO PRACTICOS/02_PYTHON/1.Proy_Discor/.git/
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON\1.Proy_Discor> git add .   #Entramos a la area de preparacion
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON\1.Proy_Discor> git status  #Vemos el estado
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   app.py     
+        new file:   doc_git.txt
+
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON\1.Proy_Discor> git commit -m"primer commit" # 2 archivos actuales por guardar
+[master (root-commit) 28a96a6] primer commit
+ 2 files changed, 7 insertions(+)
+ create mode 100644 app.py
+ create mode 100644 doc_git.txt
+
+# AHORA CREAMOMOS EL REPOSITORIO Y COPIAMOS EL CODIGO DEL REPOSITORIO (…or push an existing repository from the command line)
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON\1.Proy_Discor> git remote add origin https://github.com/CJose98/Proy_Discor.git
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON\1.Proy_Discor> git branch -M main
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON\1.Proy_Discor> git push -u origin main
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (4/4), 350 bytes | 58.00 KiB/s, done.
+Total 4 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/CJose98/Proy_Discor.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON\1.Proy_Discor>  clear # limpiar pantalla
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON\1.Proy_Discor> git branch # me permite ver en donde estoy parado (actualmente esto parado en main)
+* main
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON\1.Proy_Discor> git branch developer   # creamos una rama nueva
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON\1.Proy_Discor> git checkout developer #  Ahora estamos parado en developer y no en main
+Switched to branch 'developer'
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON\1.Proy_Discor> git branch  #verificamos en donde estamos parado
+* developer
+  main
+
+ AGREGAMOS MAS CODIGO A APP ( Ahora guardemos) (Ahora tenemos a MAIN Y A DEVELOPER)
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON\1.Proy_Discor> git add .
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON\1.Proy_Discor> git commit -m"primer commit" # cambiar nombre
+[developer 215da54] primer commit
+ 1 file changed, 43 insertions(+)
+
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON\1.Proy_Discor> git switch main # me cambia a MAIN y ahora lo que habia modificado o agregado no me lo muestra
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON\1.Proy_Discor> git switch developer # me cambia a MAIN y ahora lo que habia modificado o agregado no me lo muestra
+
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON\1.Proy_Discor> git push
+
+
+EJEMPLO.
+
+MODIFICAMOS A DEVELOPER y MAIN EN LA MISMA LINIA (TENEMOS MODIFICADO EN LOS DOS LADOS LINIA 7)
+
+ESTO NOS AYUDA AL MODIFICAR EN GRUPO EL CODIGO (TENEMOS QUE TENER CUIDADO)
+ENTONCES TENEMOS MAIN Y DEVELOPER EN LA LINIA 7 MODIFICADOS DE DIFERENTE FORMA
+
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON\1.Proy_Discor> git checkout developer
+Switched to branch 'developer'
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON\1.Proy_Discor> git add .
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON\1.Proy_Discor> git status
+On branch developer
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   app.py
+
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON\1.Proy_Discor> git commit -m"cambio mj"
+[developer db2a9d5] cambio mj
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+
+
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON\1.Proy_Discor> git checkout  main    
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON\1.Proy_Discor> git add .
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON\1.Proy_Discor> git commit -m"cambio mj"
+[main ff8fd1d] cambio mj
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+
+
+(CONFLICTO AHORA TENEMOS DOS COMMIT)
+" AHORA UNIMOS LOS DOS CODIGO DE DEVELOPER  A  MAIN "
+
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON\1.Proy_Discor> git merge developer
+Auto-merging app.py
+CONFLICT (content): Merge conflict in app.py
+Auto-merging doc_git.txt
+CONFLICT (content): Merge conflict in doc_git.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+
+AHORA ELEGIMOS Q CODIGO QUEDA
+"Aceptar cambio actual"
+"Aceptar cambio entrante"
+"Aceptar ambos cambios"
+"Comparar cambios"
+
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON\1.Proy_Discor> git push -u developer # guardamos con este codigo
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02_PYTHON\1.Proy_Discor> git push              # o guardamos con esto
+
+
+
+
+
+
+""%%% INVITAR A USUARIOA AMI REPOSITORIO    %%"""
+* ENTRAR A SETTING DEL REPOSITORIO 
+*ENTRAR A COLLABORATION
+*PONER LOS EMAILS O USUARIO DE INVITACION
+*LOS USUSARIO Q QUIERAN UNA VEZ UNIDO, CLONARAN EL REPOSITORIO DE CODE
+*LUEGO SE CREARAN UNA CARPETA Y LO PEGARAN EN FORMATO  ((( GIT BUSH HIRE )))
+*EL LA TEMINAL DE GIT CLONARAN EL REPOSITORIO
+*CODE : git clone URL(repositorio)
+
+
+
+
+EJEMPLO CREANDO MAIN CON REPOSITORIA A GITHUB Y CREANDO UN USUARIA PARA CANVIAR LOS DATOS:
+
+ ********************** "" CREAMOS UN REPOSITORIO LOCAL APP "" ************************************************************************************************
+
+
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> git init                              # INICIALIZAMOS INIT
+Initialized empty Git repository in D:/2- PROGRAMACION/TRABAJO PRACTICOS/02-PYTHON/1.Proy_Discord/api/.git/ 
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> git branch                            # VEMOS EN DONDE ESTAMOS PARADO
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> git add .                             # ENTRAMOS AL AREA DE PREPARACION
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   __init__.py
+        new file:   controllers/discor_controller.py
+
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> git commit -m"primer commit"                              # CREAMOS NUESTRO PRIMER COMMIT
+[master (root-commit) d299475] primer commit
+ 2 files changed, 22 insertions(+)
+ create mode 100644 controllers/discor_controller.py
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> git remote add origin https://github.com/CJose98/app.git  # NOS UNIMOS AL REPOSITORIO
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> git push -u origin main -f                                # AGREGAMOS NUESTRO REPOSITORIO LOCAL AL REPOSITORIO DE GITHUB
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (5/5), 634 bytes | 79.00 KiB/s, done.
+Total 5 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/CJose98/app.git
+ + 543ccea...d299475 main -> main (forced update)
+branch 'main' set up to track 'origin/main'.
+
+
+
+
+********** """ VAMOS GUARDANDO CARPETAS NECESARIAS PARA LA ESTRUCTURA BACKEND - APP """ ******************************************************************
+
+
+
+
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> git branch
+* main
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> git add .
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   database/database.py
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> git commit -m"segundo commit" 
+[main a5ab68e] segundo commit
+ 1 file changed, 112 insertions(+)
+ create mode 100644 database/database.py
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> git push -u origin main
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (4/4), 1.22 KiB | 250.00 KiB/s, done.
+Total 4 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/CJose98/app.git
+   d299475..a5ab68e  main -> main
+branch 'main' set up to track 'origin/main'.
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> git add .
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> git status
+On branch main
+Your branch is up to date with 'origin/main'.
+  (use "git restore --staged <file>..." to unstage)
+        new file:   routes/actor_bp.py
+
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> git commit -m"tercero commit"
+[main b926ec6] tercero commit
+ 1 file changed, 46 insertions(+)
+ create mode 100644 routes/actor_bp.py
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> git push -u origin main
+Enumerating objects: 5, done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (4/4), 762 bytes | 190.00 KiB/s, done.
+Total 4 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+   a5ab68e..b926ec6  main -> main
+branch 'main' set up to track 'origin/main'.
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> git add .
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   views/static/css/style.css
+
+[main cbff89b] cuarto commit
+ 3 files changed, 136 insertions(+)
+ create mode 100644 views/static/js/funciones.js
+ create mode 100644 views/templates/index.html
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> git push -u origin main     
+Enumerating objects: 10, done.
+Counting objects: 100% (10/10), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (9/9), 1.78 KiB | 182.00 KiB/s, done.
+To https://github.com/CJose98/app.git
+   b926ec6..cbff89b  main -> main
+branch 'main' set up to track 'origin/main'.
+
+
+
+
+""" FINALIAZDA LA ESTRUCTURA                   """  ****************************************************************************
+"" CREAMOS AL USUARIO PARA QUE PUEDA MODIFICAR """ ******************************************************************************************
+
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> git branch jose        #CREAMOS A USER  JOSE
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> git checkout jose
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> git checkout main
+Switched to branch 'main'
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> git checkout jose
+Switched to branch 'jose'
+
+
+
+""" UNA VEZ PARADO EN EL USUARIO JOSE EMPEZAMOS A MODIFICAR """ ***********************************************************************************
+
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> git add .                                         # GUARDAMOS LO MODIFICADO
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> git commit -m"primera  modificacion de jose"      # CREAMOS NUESTRO PRIMER COMMIT
+[jose 1888189] segunda  modificacion de jose
+ 1 file changed, 6 deletions(-)
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> git checkout main      ****************                           # AHORA NOS PARAMOS EN MAIN
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> git merge jose     ******************                               # COMPARA LO MODIFICADO DE JOSE CON MAIN
+Updating 40bfe26..1888189
+Fast-forward
+ controllers/discor_controller.py | 6 ------
+ 1 file changed, 6 deletions(-)
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> git push -u origin jose  *****************                         # LE DAMOS OK. PARA QUE MODIFIQUE (ME LLEGARA UNA SOLICITUD AL REPOSITORIO GLOBAL QUE SI QUIERE ACEPATAR DICHO CAMBIO (EL USUARIO PRINCIPAL TIENE QUE DAR EL OK.))
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (4/4), 375 bytes | 62.00 KiB/s, done.
+Total 4 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+remote:
+remote: Create a pull request for 'jose' on GitHub by visiting:
+remote:      https://github.com/CJose98/app/pull/new/jose
+remote:
+To https://github.com/CJose98/app.git
+ * [new branch]      jose -> jose
+branch 'jose' set up to track 'origin/jose'.
+PS D:\2- PROGRAMACION\TRABAJO PRACTICOS\02-PYTHON\1.Proy_Discord\api> 
