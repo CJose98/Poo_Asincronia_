@@ -18,6 +18,7 @@ Para completar la implementación, se solicita realizar las siguientes tareas:
         - `email`: Correo electrónico del cliente.
     - La clase debe tener un constructor.
     - Se debe implementar una propiedad computada `info` que retorne una cadena con el nombre y el correo electrónico del cliente.
+    
 2. Definir una clase `Reservation` en el archivo `reservations.js` que permita representar una reserva.
     - La clase debe tener las siguientes propiedades:
         - `id`: Identificador de la reserva.

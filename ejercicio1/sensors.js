@@ -24,37 +24,36 @@ class Sensor {
         this.updated_at = updated_at || '';
 
     }
-    // funcion set
-    set value(value){
-        return this.value;
+    // funcion set valor del sensor
+    set updateValue(valor){
+        return this.value = valor;
     }
-    set updated_at(updated_at){
-        return this.updated_at;
+    // funcion set fecha de actualizaion
+    set updateAt(modificar){
+        return this.updated_at= modificar;
     }
-    set type(value) {
+    set updateType(tipo) {
         const allowedTypes = ['temperature', 'humidity', 'pressure'];
-        if (!allowedTypes.includes(value)) {
-            throw new Error(`Tipo invalido: ${value}`);
+        if (!allowedTypes.includes(tipo)) {
+            console.log(`Tipo invalido: ${tipo}`)
         }
-        this._type = value;
+        this._type = tipo;
     }
 }
-sensor1 = new Sensor(1, "Temperature Sensor", "temperature", 20, "°C", "2021-06-01T12:00:00");   
+const sensor_a = new Sensor(1, "Temperature Sensor", "temperature", 20, "°C", "2021-06-01T12:00:00");   
 
-console.log(sensor1);
-console.log(sensor1.value = 15);
-console.log(sensor1.updated_at = '2022-06-01T12:00:00');
-console.log(sensor1.type = 'temperature');
-console.log(sensor1);
-
-
+console.log(sensor_a);
+console.log(sensor_a.updateValue = 15);
+console.log(sensor_a.value)
+console.log(sensor_a.updateAt = '2022-06-01T12:00:00');
+console.log(sensor_a.updateType = 'temper');
+console.log(sensor_a);
 
 
 class SensorManager {
 
     constructor() {
         this.sensors = [];
-        
     }
 
     addSensor(sensor) {
@@ -94,12 +93,21 @@ se solicita implementar el método `loadSensors` que se encargue de cargar los s
 
     async loadSensors(url) {
         try {
+            // Realiza una solicitud HTTP GET a la URL proporcionada y espera a que se resuelva la promesa.
             const response = await fetch(url);
+            // Si la respuesta no es OK (status no en el rango 200-299), lanza un error.
+            if (!response.ok) {
+                throw new Error('La respuesta no fue OK');
+            }
+            
+            // Convierte la respuesta JSON a un objeto JavaScript y espera a que se resuelva la promesa.
             const data = await response.json();
+            // Itera sobre cada elemento en el array `data` y llama al método `addSensor` para cada uno.
             data.forEach(sensorData => this.addSensor(sensorData));
+            // Llama al método `render` para actualizar la representación visual o interna de los sensores.
             this.render();  // Llama a render después de cargar los sensores
-        } catch (error) {
-            console.error(error);
+        } catch {
+            console.error('Error de ruta');
         } finally {
             console.log("Petición completada");
         }
@@ -157,11 +165,7 @@ se solicita implementar el método `loadSensors` que se encargue de cargar los s
 
 }
 
-
 const monitor = new SensorManager();
-
-monitor.loadSensors("D:/2-PROGRAMACION/FRONTEND/Tra_POOandASINCRONIA-/ejercicio1/sensors.json");
-
-//monitor.loadSensors("sensors.json");
+monitor.loadSensors("sensors.json");
 
 
