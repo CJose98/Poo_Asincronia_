@@ -13,13 +13,12 @@ class Customer {
         this.name = name || '';
         this.email = email || '';
     }
-
     info() {
         console.log(`Informacion sobre el cliente; Nombre :${this.name}, Email :${this.email}`)
     }
 }
-perso = new Customer(1, 'Jose', 'colquejose53@gmail.com');
-perso.info();
+//perso = new Customer(1, 'Jose', 'colquejose53@gmail.com');
+//perso.info();
 
 
 /*
@@ -39,22 +38,26 @@ class Reservation extends Customer{
     constructor(id_reserva,customer,date,guests){
          // Llama al constructor de Customer
         super(customer.id, customer.name, customer.email)
-            this.id = id_reserva || '';
-            this.date = date || '';
-            this.guests = guests || '';
-    }
-    infoReserva(){
-        console.log(`Info de la reserva: Fecha y Hora: ${this.date}, Nombre: ${this.name}, Email: ${this.email}, Nª Comensal: ${this.guests}`);
-    }
-    static validateReservation(reserv_){
+            this.id = id_reserva;
+            this.date = date;
+            this.guests = guests;
+    };
+
+    info(){
+      return `Info de la reserva: Fecha y Hora: ${this.date}, Nombre: ${this.name}, Email: ${this.email}, Nª Comensal: ${this.guests}`;
+    };
+    static validateReservation(reservationDate, guests){
         const now = new Date();
-        return reserv_.date >= now && reserv_.guests > 0;
-    }
+        const reserva = new Date(reservationDate); // Convertir la cadena a un objeto Date para la comparación
+        console.log(`hoy: ${now}`);
+        console.log(`reserva: ${reserva}`);
+        return reserva >= now && guests >= 0;
+    };
 }
-const c1 = new Customer(1,"pedro","@gmail");
-const reserva = new Reservation(2, c1, "2024-12-31T20:00:00", 5);
-reserva.infoReserva();
-console.log(Reservation.validateReservation(reserva)) // TRABAJAMOS con el OBJETO
+//const c1 = new Customer(1,"pedro","@gmail");
+//const reserva = new Reservation(2, c1, "2024-06-27T23:50:00", 5);
+//reserva.infoReserva();
+//console.log(Reservation.validateReservation(reserva.date, reserva.guests)) // TRABAJAMOS con el OBJETO
 
 
 
@@ -84,7 +87,7 @@ class Restaurant {
                     <div class="card-content">
                         <div class="content">
                             <p>
-                                ${reservation.info}
+                                ${reservation.info()}
                             </p>
                         </div>
                     </div>
@@ -93,10 +96,9 @@ class Restaurant {
         });
     }
 }
-    /*
-    document
-    .getElementById("reservation-form")
-    .addEventListener("submit", function (event) {
+
+document.getElementById("reservation-form")
+        .addEventListener("submit", function (event) {
         event.preventDefault();
 
         const customerName = document.getElementById("customer-name").value;
@@ -128,15 +130,20 @@ class Restaurant {
             return;
         }
     });
-    */
 const restaurant = new Restaurant("El Lojal Kolinar");
 const customer1 = new Customer(1, "Shallan Davar", "shallan@gmail.com");
-const reservation1 = new Reservation(1, customer1, "2024-12-31T20:00:00", 4);
-/*
+const reservation1 = new Reservation(1, customer1, "2028-07-28T20:00:00", 4);
+
 if (Reservation.validateReservation(reservation1.date, reservation1.guests)) {
     restaurant.addReservation(reservation1);
     restaurant.render();
 } else {
     alert("Datos de reserva inválidos");
 }
-*/
+
+
+
+//const c1 = new Customer(1,"pedro","@gmail");
+//const reserva = new Reservation(2, c1, "2024-06-27T23:50:00", 5);
+//reserva.infoReserva();
+//console.log(Reservation.validateReservation(reserva.date, reserva.guests)) // TRABAJAMOS con el OBJETO

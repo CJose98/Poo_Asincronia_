@@ -29,24 +29,26 @@ class Sensor {
         return this.value = valor;
     }
     // funcion set fecha de actualizaion
-    set updateAt(modificar){
+    set updateUpdated_at(modificar){
         return this.updated_at= modificar;
     }
     set updateType(tipo) {
         const allowedTypes = ['temperature', 'humidity', 'pressure'];
         if (!allowedTypes.includes(tipo)) {
-            console.log(`Tipo invalido: ${tipo}`)
+            return`Tipo invalido: ${tipo}`
+        }else{
+            this.type = tipo;
         }
-        this._type = tipo;
+        
     }
 }
 const sensor_a = new Sensor(1, "Temperature Sensor", "temperature", 20, "°C", "2021-06-01T12:00:00");   
 
-console.log(sensor_a);
+console.log("Sensor :", sensor_a);
 console.log(sensor_a.updateValue = 15);
 console.log(sensor_a.value)
-console.log(sensor_a.updateAt = '2022-06-01T12:00:00');
-console.log(sensor_a.updateType = 'temper');
+console.log(sensor_a.updateUpdated_at = '2022-06-01T12:00:00');
+console.log(sensor_a.updateType = 'pressu');
 console.log(sensor_a);
 
 
@@ -84,8 +86,8 @@ class SensorManager {
         }
     }
 
-        /*Para la clase `SensorManager`, la cual se encarga de gestionar los sensores mediante un arreglo, 
-se solicita implementar el método `loadSensors` que se encargue de cargar los sensores desde el archivo `sensors.json`.
+    /*Para la clase `SensorManager`, la cual se encarga de gestionar los sensores mediante un arreglo, 
+     se solicita implementar el método `loadSensors` que se encargue de cargar los sensores desde el archivo `sensors.json`.
 
     - El método debe ser **asíncrono**, puede utilizar `fetch` o `XMLHttpRequest`. Pueden emplear `async/await` o promesas.
     - El método debe recibir la ruta del archivo `sensors.json` como argumento.
@@ -102,6 +104,7 @@ se solicita implementar el método `loadSensors` que se encargue de cargar los s
             
             // Convierte la respuesta JSON a un objeto JavaScript y espera a que se resuelva la promesa.
             const data = await response.json();
+            console.log(JSON.stringify(data));
             // Itera sobre cada elemento en el array `data` y llama al método `addSensor` para cada uno.
             data.forEach(sensorData => this.addSensor(sensorData));
             // Llama al método `render` para actualizar la representación visual o interna de los sensores.
@@ -112,7 +115,6 @@ se solicita implementar el método `loadSensors` que se encargue de cargar los s
             console.log("Petición completada");
         }
     }
-
 
     render() {
         const container = document.getElementById("sensor-container");

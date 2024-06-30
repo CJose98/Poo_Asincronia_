@@ -21,15 +21,32 @@ class Card {
       `;
         return cardElement;
     }
-
     #flip() {
         const cardElement = this.element.querySelector(".card");
         cardElement.classList.add("flipped");
     }
-
     #unflip() {
         const cardElement = this.element.querySelector(".card");
         cardElement.classList.remove("flipped");
+    }
+/*💎🎨Cambia el estado de volteo de la carta en función de su estado actual.*/
+    toggleFlip(){
+        console.log("****OPERACION****")
+        const select = this.element.querySelector(".card");
+        console.log("tipo: ", select.classList.value); // 1 forma (select.classList.value == "card")
+        console.log("valor: ", this.isFlipped);        // 2 forma
+        if (!this.isFlipped){       
+            console.log("vemos la carta")
+            this.#flip();
+            this.isFlipped = true
+        }else{
+            console.log("removemos la carta")
+            this.#unflip();
+            this.isFlipped = false
+    }}
+/*💎🎨Verifica si la carta actual coincide con otra carta. */
+    matches(otherCard){
+        return this.name === otherCard.name
     }
 }
 
@@ -39,7 +56,7 @@ class Board {
         this.fixedGridElement = document.querySelector(".fixed-grid");
         this.gameBoardElement = document.getElementById("game-board");
     }
-
+    //calcula el número de columnas del tablero en función del número de cartas
     #calculateColumns() {
         const numCards = this.cards.length;
         let columns = Math.floor(numCards / 2);
@@ -49,15 +66,14 @@ class Board {
         if (columns % 2 !== 0) {
             columns = columns === 11 ? 12 : columns - 1;
         }
-
         return columns;
     }
-
+    //establece el número de columnas del tablero
     #setGridColumns() {
         const columns = this.#calculateColumns();
         this.fixedGridElement.className = `fixed-grid has-${columns}-cols`;
     }
-
+    //renderiza las cartas en el tablero
     render() {
         this.#setGridColumns();
         this.gameBoardElement.innerHTML = "";
@@ -68,19 +84,45 @@ class Board {
             this.gameBoardElement.appendChild(card.element);
         });
     }
-
+    //maneja el evento de clic en una carta
     onCardClicked(card) {
         if (this.onCardClick) {
             this.onCardClick(card);
+        }}
+/*Mezcla las cartas del tablero. 
+  El criterio de mezcla esta dispuesto a elección del estudiante.
+  mezclar matrices en JavaScript*/
+    shuffleCards(){
+        //Algoritmo aleatorio de Fisher-Yates
+        for (let i= this.cards.length -1; i > 0; i--){
+            const j = Math.floor(Math.random() * (i-1));
+            [this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
         }
+        this.render(); //volver a renderizar el tablero despues de barajar
+    }
+//Implementar el método `reset()` que reinicia el tablero.
+    reset(){
+        this.shuffleCards();    //Baraja las cartas
+        this.flipDownAllCards();//Voltea todas las cartas hacia abajo
+    }
+/*posiciona todas las cartas en su estado inicial. 
+  Es necesario para reiniciar el tablero. */
+    flipDownAllCards(){
+        this.cards.forEach(card => {
+            if (card.isFlipped) {
+                card.toggleFlip();
+        }})
     }
 }
 
+
 class MemoryGame {
     constructor(board, flipDuration = 500) {
-        this.board = board;
-        this.flippedCards = [];
-        this.matchedCards = [];
+        this.board = board;     //tablero
+        this.flippedCards = []; //conjunto de cartas volteadas
+        this.matchedCards = []; //conjunto de cartas emparejadas
+
+        //duración de animación para voltear las cartas
         if (flipDuration < 350 || isNaN(flipDuration) || flipDuration > 3000) {
             flipDuration = 350;
             alert(
@@ -91,7 +133,8 @@ class MemoryGame {
         this.board.onCardClick = this.#handleCardClick.bind(this);
         this.board.reset();
     }
-
+    /*define la interacción del usuario con las cartas, 
+    evitando que se volteen más de dos cartas a la vez */
     #handleCardClick(card) {
         if (this.flippedCards.length < 2 && !card.isFlipped) {
             card.toggleFlip();
@@ -101,6 +144,24 @@ class MemoryGame {
                 setTimeout(() => this.checkForMatch(), this.flipDuration);
             }
         }
+    }
+    /*verifica si las cartas volteadas coinciden.
+    En caso de coincidir, las cartas deben ser añadidas 
+    al conjunto de cartas emparejadas*/
+    checkForMatch(){
+        if (this.flippedCards.length === 2){
+            if (this.flippedCards[0].id === this.flippedCards[1].id){
+                this.matchedCards.push(this.flippedCards[0], this.flippedCards[1])
+            }
+            this.flippedCards = [];
+        }}
+    /*reinicia el juego. 
+    Debe emplear otros métodos de la clase `MemoryGame` para realizar esta tarea. */
+    resetGame(){
+        this.board.reset();
+        this.flippedCards = [];
+        this.matchedCards = [];
+        console.log("reinicio")
     }
 }
 

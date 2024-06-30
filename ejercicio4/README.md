@@ -11,7 +11,8 @@ En este ejercicio se solicita completar la implementación de un **juego de memo
 
 ### Clase `Card`
 
-La clase `Card` representa una carta del juego. Cada carta tiene un nombre, una imagen, un estado de volteo y un elemento HTML asociado.
+La clase `Card` representa una carta del juego. 
+Cada carta tiene un nombre, una imagen, un estado de volteo y un elemento HTML asociado.
 
 ```javascript
 class Card {
@@ -32,7 +33,8 @@ Adicionalmente, se proporcionan los métodos:
 
 ### Clase `Board`
 
-La clase `Board` representa el tablero de juego. Cada tablero tiene un conjunto de cartas y un par de elementos HTML asociados.
+La clase `Board` representa el tablero de juego. 
+Cada tablero tiene un conjunto de cartas y un par de elementos HTML asociados.
 
 ```javascript
 class Board {
@@ -53,7 +55,8 @@ Adicionalmente, se proporcionan los métodos:
 
 ### Clase `MemoryGame`
 
-La clase `MemoryGame` representa el juego de memoria. Cada juego tiene un tablero, un conjunto de cartas volteadas, un conjunto de cartas emparejadas y una duración de animación para voltear las cartas.
+La clase `MemoryGame` representa el juego de memoria. 
+Cada juego tiene un tablero, un conjunto de cartas volteadas, un conjunto de cartas emparejadas y una duración de animación para voltear las cartas.
 
 ```javascript
 class MemoryGame {
